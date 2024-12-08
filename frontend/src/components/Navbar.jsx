@@ -1,14 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { LogOut, MessageSquare, Settings, User } from "lucide-react";
-import PropTypes from "prop-types";
 
-const Navbar = ({ setTheme }) => {
+const Navbar = () => {
   const { logout, authUser } = useAuthStore();
-
-  const handleThemeChange = (event) => {
-    setTheme(event.target.value);
-  };
 
   return (
     <header
@@ -30,19 +25,6 @@ const Navbar = ({ setTheme }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <div>
-              <label htmlFor="theme">Theme: </label>
-              <select
-                className="btn btn-sm gap-2 transition-colors text-left"
-                id="theme"
-                onChange={(e) => handleThemeChange(e)}
-              >
-                <option value="retro">retro</option>
-                <option value="dark">dark</option>
-                <option value="light">light</option>
-                <option value="cupcake">cupcake</option>
-              </select>
-            </div>
             <Link
               to={"/settings"}
               className={`
@@ -74,7 +56,3 @@ const Navbar = ({ setTheme }) => {
   );
 };
 export default Navbar;
-
-Navbar.propTypes = {
-  setTheme: PropTypes.func.isRequired,
-};

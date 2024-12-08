@@ -9,11 +9,10 @@ import HomePage from "./pages/HomePage";
 import { useAuthStore } from "./store/useAuthStore";
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
+import { useThemeStore } from "./store/useThemeStore";
 
 function App() {
-  // eslint-disable-next-line
-  const [count, setCount] = useState(0);
-  const [theme, setTheme] = useState("retro");
+  const { theme } = useThemeStore();
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
 
   useEffect(() => {
@@ -30,9 +29,7 @@ function App() {
 
   return (
     <div data-theme={theme}>
-      <div>{count}</div>
-
-      <Navbar setTheme={setTheme} />
+      <Navbar />
       <Routes>
         <Route
           path="/"
