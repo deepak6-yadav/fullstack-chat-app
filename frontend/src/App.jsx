@@ -6,8 +6,9 @@ import LoginPage from "./pages/LoginPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
-import { useAuthStore } from "./store.js/useAuthStore";
+import { useAuthStore } from "./store/useAuthStore";
 import { Loader } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   // eslint-disable-next-line
@@ -39,13 +40,17 @@ function App() {
           path="/signup"
           element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
         />
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/login"
+          element={!authUser ? <LoginPage /> : <Navigate to="/" />}
+        />
         <Route path="/settings" element={<SettingsPage />} />
         <Route
           path="/profile"
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
       </Routes>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }
