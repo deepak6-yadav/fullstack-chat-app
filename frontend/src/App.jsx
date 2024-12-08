@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 function App() {
   // eslint-disable-next-line
   const [count, setCount] = useState(0);
+  const [theme, setTheme] = useState("retro");
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
 
   useEffect(() => {
@@ -28,9 +29,10 @@ function App() {
   }
 
   return (
-    <div>
+    <div data-theme={theme}>
       <div>{count}</div>
-      <Navbar />
+
+      <Navbar setTheme={setTheme} />
       <Routes>
         <Route
           path="/"

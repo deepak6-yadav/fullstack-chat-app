@@ -12,8 +12,8 @@ export const useAuthStore = create((set) => ({
     try {
       const response = await axiosInstance.get("/auth/check");
       set({ authUser: response.data });
+      // eslint-disable-next-line
     } catch (error) {
-      console.log("Error in checkAuth: ", error);
       set({ authUser: null });
     } finally {
       set({ isCheckingAuth: false });
