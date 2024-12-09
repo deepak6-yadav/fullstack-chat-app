@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import { app, server } from "./lib/socket.js";
 import express from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
@@ -13,7 +14,6 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 
 const port = process.env.PORT;
-const app = express();
 
 app.use(
   cors({
@@ -21,7 +21,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(morgan("combined"));
+app.use(morgan("common"));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -30,7 +30,7 @@ app.use("/api/messages", messageRoutes);
 
 app.use(errorHandler);
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log("Server is running on port: ", port);
   connectDB();
 });
